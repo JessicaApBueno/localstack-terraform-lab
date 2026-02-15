@@ -67,6 +67,13 @@ Vulnerabilidades de Segurança: O tfsec barrou o deploy inicial por falta de cri
 
 ---
 
+## 📖 Documentação Detalhada
+Eu escrevi um artigo detalhando todo o processo de construção deste laboratório, desde a configuração do LocalStack até a resolução de problemas de compatibilidade no CI/CD.
+
+[ ![Ler Artigo no Medium](https://img.shields.io/badge/Ler_Artigo_no_Medium-12100E?style=for-the-badge&logo=medium&logoColor=white) ](https://medium.com/@buenojessicaaparecida/d726d99bccbd)
+
+---
+
 © 2026 - Desenvolvido por Jessica Bueno para fins de estudo em Cloud & DevSecOps.
 
 
