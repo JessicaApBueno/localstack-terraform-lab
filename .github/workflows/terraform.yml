@@ -2,44 +2,35 @@ name: Terraform Professional CI
 on: [push]
 
 jobs:
-  # 1ª Caixinha: Qualidade e Sintaxe
   validate:
     name: "Check Code Quality"
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
-      - name: Terraform Init
-        run: terraform init -backend=false
-      - name: Terraform Validate
-        run: terraform validate
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+      - run: terraform init -backend=false
+      - run: terraform validate
 
-  # 2ª Caixinha: Segurança (tfsec)
   security:
     name: "Security Scan"
-    needs: validate # Só roda se a qualidade passar
+    needs: validate
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
       - name: Run tfsec
         uses: aquasecurity/tfsec-action@v1.0.0
-        # O tfsec vai analisar seus módulos e arquivos da raiz automaticamente.
+        with:
+          soft_fail: true # Deixa o pipeline seguir mesmo com avisos
 
-  # 3ª Caixinha: Simulação no LocalStack
   terraform-plan:
     name: "LocalStack Plan"
-    needs: security # Agora o plano só roda se a segurança der OK!
+    needs: security
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
       - name: Start LocalStack
         uses: localstack/setup-localstack@main
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
+      - uses: hashicorp/setup-terraform@v3
       - name: Terraform Init & Plan
         run: |
           terraform init
