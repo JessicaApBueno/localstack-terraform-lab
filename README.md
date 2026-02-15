@@ -6,7 +6,6 @@
 
 Este projeto demonstra um fluxo de trabalho profissional de **Infraestrutura como Código (IaC)** utilizando **Terraform** para simular recursos da AWS localmente com **LocalStack**. O foco principal é a implementação de uma esteira de **CI/CD no GitHub Actions** com validações automáticas de qualidade, segurança e simulação de infraestrutura.
 
-[Image of a professional DevSecOps pipeline for Terraform]
 
 ## 📂 Organização do Projeto
 
