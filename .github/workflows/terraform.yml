@@ -1,14 +1,22 @@
 name: Terraform CI
 on: [push]
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Start LocalStack
-        uses: localstack/setup-localstack@v0.2.0 # Roda o LocalStack no GitHub
+        uses: localstack/setup-localstack@v0.2
+        with:
+          image-tag: 'latest'
+          install-components: 's3' # Opcional: acelera o boot focando no que você usa
+
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
+
       - name: Terraform Init & Plan
         run: |
           terraform init
