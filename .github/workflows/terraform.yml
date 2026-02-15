@@ -1,15 +1,37 @@
-name: Terraform CI
+name: Terraform Professional CI
 on: [push]
 
 jobs:
-  build:
+  # Primeira Caixinha: Validação de Qualidade
+  validate:
+    name: "Check Code Quality"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform Format
+        run: terraform fmt -check
+        # Se o código estiver mal formatado, ele para aqui e avisa.
+
+      - name: Terraform Validate
+        run: terraform validate
+        # Checa se você esqueceu alguma vírgula ou variável.
+
+  # Segunda Caixinha: Simulação no LocalStack
+  terraform-plan:
+    name: "LocalStack Plan"
+    needs: validate # Esta linha cria a conexão entre as caixas!
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Start LocalStack
-        uses: localstack/setup-localstack@main # Mudamos para 'main' para evitar erros de versão
+        uses: localstack/setup-localstack@main
         with:
           image-tag: 'latest'
 
