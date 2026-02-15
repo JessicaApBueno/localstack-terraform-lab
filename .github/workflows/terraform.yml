@@ -9,10 +9,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Start LocalStack
-        uses: localstack/setup-localstack@v0.2
+        uses: localstack/setup-localstack@main # Mudamos para 'main' para evitar erros de versão
         with:
           image-tag: 'latest'
-          install-components: 's3' # Opcional: acelera o boot focando no que você usa
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
