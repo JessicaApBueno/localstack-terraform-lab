@@ -5,6 +5,7 @@
 ![LocalStack](https://img.shields.io/badge/localstack-v4.x-blue)
 
 Este projeto demonstra um fluxo de trabalho profissional de **Infraestrutura como Código (IaC)** utilizando **Terraform** para simular recursos da AWS localmente com **LocalStack**. O foco principal é a implementação de uma esteira de **CI/CD no GitHub Actions** com validações automáticas de qualidade, segurança e simulação de infraestrutura.
+<img width="818" height="302" alt="overview" src="https://github.com/user-attachments/assets/50581885-2602-4782-9d08-95e3cf546aee" />
 
 
 ## 📂 Organização do Projeto
